@@ -16,7 +16,7 @@
 * Должность сотрудника:
 ```
 <div class="profiles-list-item-info-position">
-Job Position
+    Job Position
 </div>
 ```
 * E-mail сотрудника:
@@ -32,7 +32,7 @@ Job Position
 
 **[⬆ Back to Index](#index)**
 ## Output information
-Данные со страницы парсим в отдельный `tests/results/*.csv` файл в таком виде:
+Данные со страницы парсим в отдельный `tests/results/{%Y-%m-%d}.csv` файл в таком виде:
 
 |     Name     |   Position   |          E-mail         |
 |:------------:|:------------:|:-----------------------:|
@@ -54,27 +54,30 @@ Job Position
 ```shell script
 ~ pip install -r requirements.txt
 ```
-* Перейдите в папку с тестами:
-```shell script
-~ cd tests
-```
-* Создайте конфигурационный файл с данными для google-авторизации в Intenet:
+* Создайте конфигурационный файл с данными для Google-авторизации в Intranet:
 ```shell script
 ~ nano configuration.yml
 ```
 ```
-base_url: 'https://domain.com/team/members/'
-email: ''
-password: ''
+intranet:
+  base_url: 'https://domain.com/team/members/'
+  user_email: ''
+  user_password: ''
+  
 ```
 * Запустите тесты:
 ```shell script
-~ python3 -m pytest test_parser.py -v --html=report.html
+~ python3 -m pytest [--verbose] --html=report.html
+```
+* Arguments:
+```
+[--verbose]: increase verbosity
+[--html]: generate a HTML report for the test results
 ```
 
 **[⬆ Back to Index](#index)**
 ## To Do List
 - [ ] Обойти двухфаторную аутентиификацию Google
-- [ ] PageObject
+- [x] PageObject
 - [ ] Настроить CI/CD
-- [ ] Добавить получение `*.csv` файла с результатами по e-mail
+- [ ] Добавить получение `{%Y-%m-%d}.csv` файла с результатами по e-mail
