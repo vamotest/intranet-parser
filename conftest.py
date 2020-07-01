@@ -1,7 +1,8 @@
-from fixtures.browser import Browser
 import os
 import pytest
-import yaml
+
+from fixtures.browser import Browser
+from configuration import get_intranet_configuration
 
 
 def pytest_addoption(parser):
@@ -16,10 +17,9 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="session")
 def browser(request):
-    conf = yaml.safe_load(open('configuration.yml'))
-    url = conf['base_url']
+    intranet_url = get_intranet_configuration()[2]
     browser = request.config.getoption("--browser")
-    fixture = Browser(url=url, browser=browser)
+    fixture = Browser(url=intranet_url, browser=browser)
     yield fixture
     fixture.quit()
 
