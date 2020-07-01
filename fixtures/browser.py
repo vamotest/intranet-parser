@@ -7,8 +7,12 @@ class Browser:
         if browser.lower() == 'chrome':
             self.wd = webdriver.Chrome()
             self.wd.maximize_window()
+        elif browser.lower() == 'chrome_headless':
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument('headless')
+            self.wd = webdriver.Chrome(options=chrome_options)
         else:
-            raise ValueError(f'Unrecognized browser: {browser}')
+            raise ValueError(f'Unrecognized browser: {browser}') from Exception
         self.wd.implicitly_wait(20)
         self.url = url
 
