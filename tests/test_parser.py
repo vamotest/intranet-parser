@@ -28,7 +28,7 @@ def test_parse_info(browser):
         assert len(names_list) == len(jobs_list) == len(emails_list)
 
         try:
-            os.stat('results')
+            os.stat('tests/results')
         except FileNotFoundError:
             os.mkdir('results')
 
