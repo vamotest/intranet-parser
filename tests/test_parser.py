@@ -30,6 +30,7 @@ def test_parse_info(browser):
         try:
             os.stat('tests/results')
         except FileNotFoundError:
+            os.chdir('tests')
             os.mkdir('results')
 
         write_results(names_list, jobs_list, emails_list)
